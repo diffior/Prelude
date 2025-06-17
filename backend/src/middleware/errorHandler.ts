@@ -21,3 +21,9 @@ export const errorHandler = (
     url: req.url,
     method: req.method
   });
+
+  res.status(statusCode).json({
+    error: message,
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+  });
+};
